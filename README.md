@@ -43,7 +43,7 @@ thatjoint/
 - GSAP/ScrollTrigger reveals, counters, parallax, and chart animation
 - Native scrolling with fixed-header anchor offsets
 - Keyboard-accessible product tabs
-- Interactive U.S. market selector (50 states, D.C., and Puerto Rico)
+- Interactive India rollout-planning selector for eight major property markets
 - Full-screen responsive menu
 - Native pilot-request dialog and local confirmation toast
 - Reduced-motion support

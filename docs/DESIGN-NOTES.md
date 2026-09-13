@@ -28,6 +28,7 @@ This implementation uses the reference site's high-level visual language—large
 - Visible focus behavior inherited from browser controls
 - ARIA-selected product tabs with arrow-key navigation
 - Live selected-market and confirmation regions
+- India market choices use planning language and do not imply service availability
 - Native dialog semantics
 - Menu state announced through `aria-expanded` and `aria-hidden`
 - Reduced-motion stylesheet and runtime path
