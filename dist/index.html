@@ -11,7 +11,7 @@
   <link rel="preload" as="image" href="assets/hero-urban-homes.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A459FF'/%3E%3Cpath d='M7 9h18v4h-7v12h-4V13H7z' fill='white'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260916-6" />
   <noscript><style>.loader { display: none !important; }</style></noscript>
 </head>
 <body>
@@ -20,12 +20,12 @@
 
   <header class="site-header" id="siteHeader">
     <a class="brand" href="#top" aria-label="THATJOINT home">THΛTJOINT<span>.</span></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#intelligence">Intelligence</a></nav>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#process">Operations</a><a href="#rollout">Rollout</a><a href="#intelligence">Intelligence</a></nav>
     <button class="header-cta open-demo" type="button">Request a pilot <span aria-hidden="true">↗</span></button>
     <button class="menu-toggle" id="menuToggle" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu"><i></i><i></i></button>
   </header>
   <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <nav aria-label="Mobile navigation"><a href="#platform"><span>01</span>Platform</a><a href="#process"><span>02</span>Process</a><a href="#rollout"><span>03</span>Rollout</a><a href="#intelligence"><span>04</span>Intelligence</a></nav>
+    <nav aria-label="Mobile navigation"><a href="#platform"><span>01</span>Platform</a><a href="#process"><span>02</span>Operations</a><a href="#rollout"><span>03</span>Rollout</a><a href="#intelligence"><span>04</span>Intelligence</a></nav>
     <button class="button button-light open-demo" type="button">Request a pilot <span aria-hidden="true">↗</span></button><p>One system for the whole property.</p>
   </aside>
 
@@ -60,35 +60,63 @@
 
     <section class="statistics" aria-label="Platform principles">
       <div class="statistics-inner">
-        <figure class="statistics-visual reveal" aria-hidden="true"><img src="assets/intelligence-connected-homes-b.webp" width="1280" height="720" loading="lazy" decoding="async" alt="" /></figure>
-        <article class="stat-card stat-visibility reveal"><p>Operational visibility</p><strong>24<small>/7</small></strong><span>Context when you need it</span></article>
-        <article class="stat-card stat-source reveal"><p>Shared source of truth</p><strong>01</strong><span>Connected operating system</span></article>
-        <article class="stat-card stat-workflows reveal"><p>Core workflows</p><strong>04</strong><span>Rent · residents · repairs · files</span></article>
+        <article class="stat-card stat-visibility reveal"><div class="stat-card-head"><p>Operational visibility</p><span>01</span></div><strong>LIVE</strong><ul><li>Rent due and received</li><li>Repairs waiting on action</li><li>Renewals approaching</li></ul></article>
+        <article class="stat-card stat-source reveal"><div class="stat-card-head"><p>Shared source of truth</p><span>02</span></div><strong>ONE</strong><ul><li>Property and resident history</li><li>Payments and documents</li><li>Every update in context</li></ul></article>
+        <article class="stat-card stat-workflows reveal"><div class="stat-card-head"><p>Core workflows</p><span>03</span></div><strong>04</strong><ul><li>Rent and payments</li><li>Residents and communication</li><li>Repairs and records</li></ul></article>
       </div>
     </section>
 
     <section class="products section-pad" id="platform" aria-labelledby="products-title">
-      <div class="products-intro"><p class="eyebrow reveal"><span>02</span><b>The platform</b></p><h2 class="display split-heading" id="products-title">Different jobs.<br /><em>One continuous view.</em></h2><p class="reveal">Move between the work without rebuilding the story. Every update stays connected to the right resident, home, and team.</p></div>
-      <div class="product-shell reveal">
-        <div class="product-tabs" role="tablist" aria-label="Platform capabilities"><button id="tab-rent" type="button" role="tab" aria-selected="true" aria-controls="productPanel" data-product="rent"><span>01</span>Rent</button><button id="tab-residents" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-product="residents"><span>02</span>Residents</button><button id="tab-repairs" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-product="repairs"><span>03</span>Repairs</button><button id="tab-documents" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-product="documents"><span>04</span>Documents</button></div>
-        <div class="product-panel" id="productPanel" role="tabpanel" aria-labelledby="tab-rent" tabindex="0"><div class="panel-top"><span id="productLabel">Collection workflow</span><i>THΛTJOINT / OS</i></div><h3 id="productTitle">Rent without<br />the chase.</h3><p id="productCopy">Give residents a clear payment path, record incoming rent, and understand collection status without piecing together multiple tools.</p><dl id="productDetails"><div><dt>One view</dt><dd>Payment status</dd></div><div><dt>Clear record</dt><dd>Receipts attached</dd></div><div><dt>Ready</dt><dd>For review</dd></div></dl></div>
+      <div class="products-intro">
+        <p class="eyebrow platform-eyebrow"><span>02</span><b>The platform</b></p>
+        <h2 class="display split-heading" id="products-title">Different jobs.<br /><em>One continuous view.</em></h2>
+        <p class="products-copy">One operating system, shaped around the way you rent. Payments, people, work, and records stay connected across every property and every operating model.</p>
+      </div>
+      <div class="product-shell">
+        <div class="product-tabs" role="tablist" aria-label="Rental operating models"><span class="product-tab-indicator" aria-hidden="true"></span><button id="tab-single-family" type="button" role="tab" aria-selected="true" aria-controls="productPanel" data-mode="single-family"><span>01</span><b>Single-family</b></button><button id="tab-communities" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-mode="communities"><span>02</span><b>Communities</b></button><button id="tab-short-term" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-mode="short-term"><span>03</span><b>Short-term</b></button><button id="tab-portfolio-ops" type="button" role="tab" aria-selected="false" aria-controls="productPanel" tabindex="-1" data-mode="portfolio-ops"><span>04</span><b>Portfolio ops</b></button></div>
+        <div class="product-panel" id="productPanel" role="tabpanel" aria-labelledby="tab-single-family" tabindex="0">
+          <div class="product-visual-clip" style="opacity: 1;"><div class="product-visual-track"><div class="product-app-frame" id="productAppFrame" role="img" aria-label="Single-family management application wireframe"></div></div><span class="product-visual-wash" aria-hidden="true"></span></div>
+          <article class="product-card"><div class="product-panel-content"><div class="panel-top"><span><i id="productNumber">01</i><b id="productLabel">Single-family</b></span><em>THΛTJOINT / ONE OS</em></div><h3 id="productTitle">Every home.<br />One operating<br />rhythm.</h3><p id="productCopy">Keep rent, resident history, repairs, and documents connected to each address, so every home stays clear from move-in to renewal.</p><dl id="productDetails"><div><dt>Connected</dt><dd>Home + resident</dd></div><div><dt>Visible</dt><dd>Rent + repairs</dd></div><div><dt>Ready</dt><dd>Renewal context</dd></div></dl></div></article>
+        </div>
       </div>
     </section>
 
     <section class="process" id="process" aria-labelledby="process-title">
       <div class="process-inner">
-        <p class="eyebrow eyebrow-light reveal"><span>03</span><b>Operations</b></p>
+        <p class="eyebrow eyebrow-light reveal"><span>03</span><b>Operations + security</b></p>
         <div class="process-heading">
-          <h2 class="display split-heading" id="process-title">Know what changed.<br /><em>Know what comes next.</em></h2>
-          <p class="process-lede reveal">THΛTJOINT turns fragmented updates into a legible operating rhythm: capture the signal, put it in context, assign the next move, and preserve the outcome.</p>
+          <h2 class="display split-heading" id="process-title">Run the work.<br /><em>Protect every move.</em></h2>
+          <div class="process-lede reveal"><p>One operating rhythm from first signal to finished work—connected to the right property and protected at every step.</p><strong>Your home. Your server. Your data.</strong><span>We set up the technology. You keep control.</span></div>
         </div>
-        <div class="process-canvas">
-          <figure class="process-image reveal"><img src="assets/process-homes-dusk.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustrated connected homes illuminated at dusk" /><figcaption><span>From signal</span><span>To finished work</span></figcaption></figure>
-          <ol class="process-steps">
-            <li class="reveal"><span>01</span><i aria-hidden="true"></i><h3>Capture</h3><p>A request, payment, document, or conversation enters one shared record.</p></li>
-            <li class="reveal"><span>02</span><i aria-hidden="true"></i><h3>Connect</h3><p>The right home, resident, owner, and history travel with it.</p></li>
-            <li class="reveal"><span>03</span><i aria-hidden="true"></i><h3>Resolve</h3><p>Ownership stays visible until the work is completed and confirmed.</p></li>
+        <div class="ops-carousel reveal">
+          <div class="ops-carousel-head">
+            <p>One protected operating rhythm</p>
+            <div class="ops-progress" aria-hidden="true"><i id="opsProgress"></i></div>
+            <div class="ops-controls"><button id="opsPrev" type="button" aria-label="Previous feature">←</button><button id="opsNext" type="button" aria-label="Next feature">→</button></div>
+          </div>
+          <ol class="ops-track" id="opsTrack" tabindex="0" aria-label="Operations and security features">
+            <li class="ops-slide">
+              <header><span>01 / Intake</span><b>Operations</b></header><h3>Capture</h3><p>A request, payment, document, or conversation enters once—without losing where it came from.</p>
+              <div class="ops-component component-capture" aria-hidden="true"><span><i></i>Resident message</span><span><i></i>Payment received</span><span><i></i>Repair request</span></div><div class="ops-slide-foot"><span>Signal enters once</span><i>● Live</i></div>
+            </li>
+            <li class="ops-slide">
+              <header><span>02 / Context</span><b>Operations</b></header><h3>Connect</h3><p>The home, resident, owner, documents, and history stay attached to one shared property record.</p>
+              <div class="ops-component component-connect" aria-hidden="true"><strong>HOME 014</strong><span>Resident</span><span>Lease</span><span>Documents</span></div><div class="ops-slide-foot"><span>One source of truth</span><i>04 links</i></div>
+            </li>
+            <li class="ops-slide">
+              <header><span>03 / Ownership</span><b>Workflow</b></header><h3>Coordinate</h3><p>Every next step has an owner, a status, and a clear place in the operating timeline.</p>
+              <div class="ops-component component-coordinate" aria-hidden="true"><span><i>01</i><b>Assigned</b></span><span><i>02</i><b>In progress</b></span><span><i>03</i><b>Review</b></span></div><div class="ops-slide-foot"><span>Nothing goes quiet</span><i>3 active</i></div>
+            </li>
+            <li class="ops-slide ops-slide-security">
+              <header><span>04 / Permission</span><b>Security</b></header><h3>Control</h3><p>Access follows responsibility. People see what they need, while sensitive records stay protected.</p>
+              <div class="ops-component component-control" aria-hidden="true"><span><i>Owner</i><b>Full access</b></span><span><i>Manager</i><b>Operations</b></span><span><i>Vendor</i><b>Assigned work</b></span></div><div class="ops-slide-foot"><span>Your key. Your rules.</span><i>Protected</i></div>
+            </li>
+            <li class="ops-slide ops-slide-security">
+              <header><span>05 / Record</span><b>Security</b></header><h3>Prove</h3><p>Important changes remain visible in an accountable history, from first action through final resolution.</p>
+              <div class="ops-component component-audit" aria-hidden="true"><span><i></i><b>Request captured</b><small>09:14</small></span><span><i></i><b>Access confirmed</b><small>09:16</small></span><span><i></i><b>Work closed</b><small>14:42</small></span></div><div class="ops-slide-foot"><span>Audit-ready history</span><i>Complete</i></div>
+            </li>
           </ol>
+          <p class="visually-hidden" id="opsStatus" aria-live="polite">Step 1 of 5: Capture.</p>
         </div>
       </div>
     </section>
@@ -129,10 +157,10 @@
     <section class="contact section-pad" id="contact" aria-labelledby="contact-title"><p class="eyebrow eyebrow-light reveal"><span>06</span><b>Next step</b></p><h2 class="split-heading" id="contact-title">Make the whole<br />portfolio click.</h2><div class="contact-foot reveal"><p>Start with one property, one workflow, or one operational pain point. Build from a shared view.</p><button class="contact-button open-demo" type="button"><span>Request a pilot</span><b aria-hidden="true">↗</b></button></div></section>
   </main>
 
-  <footer><div class="footer-grid"><p>Rental operations,<br />connected.</p><nav aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#process">Process</a><a href="#rollout">Rollout</a><a href="#intelligence">Intelligence</a></nav><p><a href="mailto:hello@thatjoint.com">hello@thatjoint.com</a><br />Location discussed during planning</p></div><p class="footer-wordmark" aria-label="THATJOINT">THΛTJOINT<span>.</span></p><div class="footer-bottom"><span>© 2026 THΛTJOINT</span><span>Rental operations, connected</span><a href="#top">Back to top ↑</a></div></footer>
+  <footer><div class="footer-grid"><p>Rental operations,<br />connected.</p><nav aria-label="Footer navigation"><a href="#platform">Platform</a><a href="#process">Operations</a><a href="#rollout">Rollout</a><a href="#intelligence">Intelligence</a></nav><p><a href="mailto:hello@thatjoint.com">hello@thatjoint.com</a><br />Location discussed during planning</p></div><p class="footer-wordmark" aria-label="THATJOINT">THΛTJOINT<span>.</span></p><div class="footer-bottom"><span>© 2026 THΛTJOINT</span><span>Rental operations, connected</span><a href="#top">Back to top ↑</a></div></footer>
 
   <dialog id="demoDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDescription"><form method="dialog" id="demoForm"><div class="dialog-head"><span>THΛTJOINT / PILOT REQUEST</span><button class="dialog-close" value="cancel" type="submit" formnovalidate aria-label="Close dialog">×</button></div><h2 id="dialogTitle">Start with<br /><em>one property.</em></h2><p id="dialogDescription">Tell us where your team loses time today.</p><div class="form-grid"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required placeholder="Your name" /><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /><label for="focus">Pilot focus</label><select id="focus" name="focus" required><option value="">Choose a workflow</option><option>Rent and payments</option><option>Resident operations</option><option>Repairs and maintenance</option><option>Documents and records</option><option>Connected portfolio view</option></select></div><button class="submit-button" type="submit"><span>Request a pilot</span><b aria-hidden="true">↗</b></button><small>This prototype form does not transmit or store information.</small></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Thanks—this prototype request was completed locally.</div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script><script src="app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script><script src="app.js?v=20260916-5" defer></script>
 </body>
 </html>

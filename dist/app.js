@@ -58,6 +58,7 @@
 
   window.setTimeout(finishLoader, 4500); /* safety net */
   runLoader();
+  initOperationsCarousel();
 
   /* ------------------------------------------------------------------ *
    *  Motion router                                                      *
@@ -71,7 +72,7 @@
       heroIn();
       revealOnScroll();
       heroParallax();
-      processImageMotion();
+      platformMotion();
       intelligenceIn();
       return;
     }
@@ -79,6 +80,7 @@
     if (hasIO) {
       body.classList.add('motion-ready');
       observeReveals();
+      observePlatform();
       return;
     }
     /* No animation path available: the page simply stays fully visible. */
@@ -123,24 +125,82 @@
       });
   }
 
-  function processImageMotion() {
-    var section = document.querySelector('.process');
-    var image = document.querySelector('.process-image img');
-    if (!section || !image) return;
+  function platformMotion() {
+    var section = document.querySelector('.products');
+    var visualTrack = document.querySelector('.product-visual-track');
+    if (!section) return;
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 82%',
+      once: true,
+      onEnter: function () { section.classList.add('platform-entered'); }
+    });
+    if (visualTrack) {
+      gsap.fromTo(visualTrack, { yPercent: -2.5 }, {
+        yPercent: 2.5,
+        ease: 'none',
+        scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
+      });
+    }
+  }
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.7
-      }
-    })
-      .fromTo(image,
-        { yPercent: -4, scale: 1.08, filter: 'blur(7px)' },
-        { yPercent: 0, scale: 1.04, filter: 'blur(0px)', ease: 'none', duration: 0.42 })
-      .to(image,
-        { yPercent: 5, scale: 1.01, filter: 'blur(8px)', ease: 'none', duration: 0.58 });
+  function initOperationsCarousel() {
+    var track = document.getElementById('opsTrack');
+    var previous = document.getElementById('opsPrev');
+    var next = document.getElementById('opsNext');
+    var progress = document.getElementById('opsProgress');
+    var status = document.getElementById('opsStatus');
+    if (!track || !previous || !next) return;
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.ops-slide'));
+    var activeIndex = 0;
+    var scrollFrame = null;
+
+    function slideTitle(index) {
+      var heading = slides[index] && slides[index].querySelector('h3');
+      return heading ? heading.textContent : 'Feature';
+    }
+
+    function sync(index) {
+      activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+      previous.disabled = activeIndex === 0;
+      next.disabled = activeIndex === slides.length - 1;
+      if (progress) progress.style.width = (((activeIndex + 1) / slides.length) * 100) + '%';
+      if (status) status.textContent = 'Step ' + (activeIndex + 1) + ' of ' + slides.length + ': ' + slideTitle(activeIndex) + '.';
+    }
+
+    function nearestSlide() {
+      var firstOffset = slides[0] ? slides[0].offsetLeft : 0;
+      var target = track.scrollLeft + firstOffset;
+      var nearest = 0;
+      var distance = Infinity;
+      slides.forEach(function (slide, index) {
+        var nextDistance = Math.abs(slide.offsetLeft - target);
+        if (nextDistance < distance) { distance = nextDistance; nearest = index; }
+      });
+      sync(nearest);
+    }
+
+    function goTo(index) {
+      var target = Math.max(0, Math.min(index, slides.length - 1));
+      var firstOffset = slides[0] ? slides[0].offsetLeft : 0;
+      track.scrollTo({ left: slides[target].offsetLeft - firstOffset, behavior: reduced ? 'auto' : 'smooth' });
+      sync(target);
+    }
+
+    previous.addEventListener('click', function () { goTo(activeIndex - 1); });
+    next.addEventListener('click', function () { goTo(activeIndex + 1); });
+    track.addEventListener('keydown', function (event) {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      goTo(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
+    });
+    track.addEventListener('scroll', function () {
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = window.requestAnimationFrame(function () { nearestSlide(); scrollFrame = null; });
+    }, { passive: true });
+    window.addEventListener('resize', nearestSlide);
+    sync(0);
   }
 
   function intelligenceIn() {
@@ -168,6 +228,17 @@
       el.style.setProperty('--reveal-delay', groupDelay(el) + 'ms');
       observer.observe(el);
     });
+  }
+
+  function observePlatform() {
+    var section = document.querySelector('.products');
+    if (!section) return;
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      section.classList.add('platform-entered');
+      observer.disconnect();
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    observer.observe(section);
   }
 
   function groupDelay(el) {
@@ -358,70 +429,182 @@
   }
 
   /* ------------------------------------------------------------------ *
-   *  Platform tabs — one panel, four swap-in views                      *
+   *  Platform tabs — one operating system, four rental models           *
    * ------------------------------------------------------------------ */
-  var PRODUCTS = {
-    rent: {
-      label: 'Collection workflow',
-      title: 'Rent without<br />the chase.',
-      copy: 'Give residents a clear payment path, record incoming rent, and understand collection status without piecing together multiple tools.',
-      details: [
-        ['One view', 'Payment status'],
-        ['Clear record', 'Receipts attached'],
-        ['Ready', 'For review']
-      ]
+  var PROPERTY_MODES = {
+    'single-family': {
+      number: '01', label: 'Single-family', cardSide: 'right', title: 'Every home.<br />One operating<br />rhythm.',
+      copy: 'Keep rent, resident history, repairs, and documents connected to each address, so every home stays clear from move-in to renewal.',
+      details: [['Connected', 'Home + resident'], ['Visible', 'Rent + repairs'], ['Ready', 'Renewal context']],
+      app: {
+        context: 'Single-family OS', title: 'Homes overview', action: 'Add home',
+        nav: ['Overview', 'Homes', 'Residents', 'Rent', 'Repairs'],
+        metrics: [['Homes', '24'], ['Occupied', '22'], ['Open repairs', '03']],
+        columns: ['Property', 'Resident', 'Rent', 'Status'],
+        rows: [['Oakview · 12A', 'Smith family', 'Paid', 'Healthy'], ['Riverside · 08', 'Gupta family', 'Due 18 Sep', 'Repair open'], ['Willow Lane · 31', 'Jensen family', 'Paid', 'Healthy']],
+        railTitle: 'Today', rail: [['Rent received', '18 / 22'], ['Renewals due', '02'], ['New request', 'Kitchen sink']],
+        footer: '24 homes connected to one operating timeline'
+      }
     },
-    residents: {
-      label: 'Resident operations',
-      title: 'Every resident,<br />in context.',
-      copy: 'Keep conversations, renewals, documents, and resident history on one connected record, so the next step is always clear to whoever acts on it.',
-      details: [
-        ['One record', 'Resident history'],
-        ['Tracked', 'Renewals on time'],
-        ['Attached', 'Notes & files']
-      ]
+    communities: {
+      number: '02', label: 'Communities', cardSide: 'right', title: 'One community.<br />Every detail<br />aligned.',
+      copy: 'Give on-site and central teams the same view of occupancy, collections, resident conversations, and work across every unit in the community.',
+      details: [['Shared', 'Team visibility'], ['Current', 'Unit status'], ['Coordinated', 'Resident service']],
+      app: {
+        context: 'PG + hostel desk', title: 'Beds & residents', action: 'New move-in',
+        nav: ['Overview', 'Beds', 'Residents', 'Dues', 'Service'],
+        metrics: [['Beds', '160'], ['Occupied', '142'], ['Arrivals today', '06']],
+        columns: ['Building', 'Capacity', 'Occupied', 'Dues'],
+        rows: [['Cedar PG · A', '48 beds', '44', '96% clear'], ['North House · B', '64 beds', '58', '07 pending'], ['Campus Hostel · C', '48 beds', '40', '92% clear']],
+        railTitle: 'Front desk', rail: [['Move-ins', '06 today'], ['Beds to prepare', '04'], ['Resident requests', '09 open']],
+        footer: 'Every bed, resident, due, and request in one desk'
+      }
     },
-    repairs: {
-      label: 'Maintenance workflow',
-      title: 'Repairs that<br />move to done.',
-      copy: 'From first request to confirmed outcome, every repair keeps its owner, evidence, and updates in one visible thread the whole team can follow.',
-      details: [
-        ['Assigned', 'Clear ownership'],
-        ['One thread', 'Updates kept'],
-        ['Confirmed', 'Closed with proof']
-      ]
+    'short-term': {
+      number: '03', label: 'Short-term', cardSide: 'left', title: 'Every stay.<br />Ready for<br />the next.',
+      copy: 'Coordinate guest details, turnovers, maintenance, and property records in one continuous timeline built for faster operating cycles.',
+      details: [['Timed', 'Stay + turnover'], ['Assigned', 'Service work'], ['Prepared', 'Next arrival']],
+      app: {
+        context: 'Hotel operations', title: 'Today’s stays', action: 'Add booking',
+        nav: ['Today', 'Rooms', 'Guests', 'Turnovers', 'Maintenance'],
+        metrics: [['Rooms', '48'], ['Ready', '42'], ['Arrivals', '14']],
+        columns: ['Room', 'Guest', 'Turnover', 'Status'],
+        rows: [['201 · King', 'A. Mehta', 'Complete', 'Checked in'], ['304 · Suite', 'L. Weber', '11:30', 'Arriving'], ['118 · Twin', '—', 'In progress', 'Cleaning']],
+        railTitle: 'Next up', rail: [['Check-ins', '14 today'], ['Late checkout', '02'], ['Rooms blocked', '01']],
+        footer: 'Live room readiness from checkout to next arrival'
+      }
     },
-    documents: {
-      label: 'Records workflow',
-      title: 'Paperwork,<br />without the pile.',
-      copy: 'Leases, notices, and records live in one organized library, shared with the right people and retrievable in seconds when something is disputed.',
-      details: [
-        ['One library', 'Everything filed'],
-        ['Right people', 'Shared access'],
-        ['Retrievable', 'In seconds']
-      ]
+    'portfolio-ops': {
+      number: '04', label: 'Portfolio ops', cardSide: 'right', title: 'Every property.<br />One command<br />view.',
+      copy: 'See the same connected operational story at property and portfolio level, so distributed teams can act locally while leadership sees the whole.',
+      details: [['Unified', 'Portfolio signal'], ['Governed', 'Roles + records'], ['Scalable', 'Shared workflows']],
+      app: {
+        context: 'Portfolio command', title: 'Societies overview', action: 'View report',
+        nav: ['Portfolio', 'Societies', 'Units', 'Collections', 'Work orders'],
+        metrics: [['Societies', '12'], ['Units', '2,480'], ['Collections', '96%']],
+        columns: ['Project', 'Units', 'Collected', 'Signal'],
+        rows: [['Parkside Society', '640', '97%', 'On track'], ['The Grand Residences', '920', '94%', 'Review'], ['Lakeview Enclave', '480', '98%', 'On track']],
+        railTitle: 'Portfolio signal', rail: [['Projects on track', '09 / 12'], ['Work orders', '38 open'], ['Leadership review', '03 items']],
+        footer: 'One governed view across projects, societies, and teams'
+      }
     }
   };
 
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.product-tabs button'));
   var panel = document.getElementById('productPanel');
+  var tabsEl = document.querySelector('.product-tabs');
+  var panelContent = panel ? panel.querySelector('.product-panel-content') : null;
+  var cardEl = panel ? panel.querySelector('.product-card') : null;
+  var productAppFrame = document.getElementById('productAppFrame');
+  var numberEl = document.getElementById('productNumber');
   var labelEl = document.getElementById('productLabel');
   var titleEl = document.getElementById('productTitle');
   var copyEl = document.getElementById('productCopy');
   var detailsEl = document.getElementById('productDetails');
   var activeTab = null;
+  var resizeFrame = null;
+  var transitionToken = 0;
 
-  function renderProduct(key) {
-    var data = PRODUCTS[key];
+  function renderProductApp(key) {
+    var mode = PROPERTY_MODES[key];
+    var app = mode && mode.app;
+    if (!app || !productAppFrame) return;
+    productAppFrame.setAttribute('data-mode', key);
+    productAppFrame.setAttribute('aria-label', mode.label + ' management application wireframe');
+    productAppFrame.innerHTML =
+      '<aside class="app-sidebar">' +
+        '<div class="app-mark"><i></i><b>THΛTJOINT</b></div>' +
+        '<p>' + app.context + '</p>' +
+        '<nav aria-label="' + mode.label + ' application navigation">' + app.nav.map(function (item, index) {
+          return '<span class="' + (index === 0 ? 'is-current' : '') + '"><i></i>' + item + '</span>';
+        }).join('') + '</nav>' +
+        '<div class="app-user"><i>OS</i><span>Operations<small>Workspace</small></span></div>' +
+      '</aside>' +
+      '<div class="app-surface">' +
+        '<header><div><span>Workspace / ' + app.context + '</span><h4>' + app.title + '</h4></div><button type="button" tabindex="-1">+ ' + app.action + '</button></header>' +
+        '<div class="app-metrics">' + app.metrics.map(function (metric, index) {
+          return '<article><span>0' + (index + 1) + ' / ' + metric[0] + '</span><strong>' + metric[1] + '</strong><i></i></article>';
+        }).join('') + '</div>' +
+        '<div class="app-workspace">' +
+          '<section class="app-table-card"><div class="app-card-head"><b>Live workspace</b><span>● Synced now</span></div>' +
+            '<div class="app-table-head">' + app.columns.map(function (column) { return '<span>' + column + '</span>'; }).join('') + '</div>' +
+            '<div class="app-table-body">' + app.rows.map(function (row) {
+              return '<div>' + row.map(function (cell, index) { return '<span class="cell-' + index + '">' + cell + '</span>'; }).join('') + '</div>';
+            }).join('') + '</div>' +
+          '</section>' +
+          '<aside class="app-rail"><div class="app-card-head"><b>' + app.railTitle + '</b><span>Live</span></div>' +
+            app.rail.map(function (item) { return '<div class="app-rail-item"><span>' + item[0] + '</span><strong>' + item[1] + '</strong></div>'; }).join('') +
+            '<div class="app-mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
+          '</aside>' +
+        '</div>' +
+        '<footer><span>● Connected</span><p>' + app.footer + '</p><b>Live view ↗</b></footer>' +
+      '</div>';
+  }
+
+  function renderPropertyMode(key) {
+    var data = PROPERTY_MODES[key];
     if (!data || !panel) return;
+    if (numberEl) numberEl.textContent = data.number;
     if (labelEl) labelEl.textContent = data.label;
     if (titleEl) titleEl.innerHTML = data.title;
     if (copyEl) copyEl.textContent = data.copy;
     if (detailsEl) {
-      detailsEl.innerHTML = data.details.map(function (pair) {
-        return '<div><dt>' + pair[0] + '</dt><dd>' + pair[1] + '</dd></div>';
-      }).join('');
+      detailsEl.innerHTML = '';
+      data.details.forEach(function (detail) {
+        var item = document.createElement('div');
+        var term = document.createElement('dt');
+        var description = document.createElement('dd');
+        term.textContent = detail[0];
+        description.textContent = detail[1];
+        item.appendChild(term);
+        item.appendChild(description);
+        detailsEl.appendChild(item);
+      });
     }
+    if (cardEl) cardEl.classList.toggle('product-card-left', data.cardSide === 'left');
+    panel.classList.toggle('product-panel-card-left', data.cardSide === 'left');
+    panel.setAttribute('data-mode', key);
+    renderProductApp(key);
+  }
+
+  function positionTabIndicator(tab) {
+    if (!tabsEl || !tab) return;
+    tabsEl.style.setProperty('--indicator-x', tab.offsetLeft + 'px');
+    tabsEl.style.setProperty('--indicator-width', tab.offsetWidth + 'px');
+  }
+
+  function keepTabVisible(tab) {
+    if (!tabsEl || !tab || tabsEl.scrollWidth <= tabsEl.clientWidth) return;
+    var target = tab.offsetLeft - ((tabsEl.clientWidth - tab.offsetWidth) / 2);
+    tabsEl.scrollTo({ left: target, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  function swapPanelContent(key) {
+    transitionToken += 1;
+    var token = transitionToken;
+    if (!panelContent || reduced) {
+      renderPropertyMode(key);
+      if (panel) panel.removeAttribute('aria-busy');
+      return;
+    }
+    panel.setAttribute('aria-busy', 'true');
+    panelContent.classList.remove('is-entering');
+    panelContent.classList.add('is-leaving');
+    window.setTimeout(function () {
+      if (token !== transitionToken) return;
+      renderPropertyMode(key);
+      panelContent.classList.remove('is-leaving');
+      panelContent.classList.add('is-entering');
+      void panelContent.offsetWidth;
+      window.requestAnimationFrame(function () {
+        if (token !== transitionToken) return;
+        panelContent.classList.remove('is-entering');
+      });
+      window.setTimeout(function () {
+        if (token !== transitionToken) return;
+        panel.removeAttribute('aria-busy');
+      }, 300);
+    }, 180);
   }
 
   function selectTab(tab, moveFocus) {
@@ -436,47 +619,40 @@
     });
     if (panel) panel.setAttribute('aria-labelledby', tab.id);
     activeTab = tab;
-    renderProduct(tab.getAttribute('data-product'));
-    if (panel) {
-      panel.classList.remove('is-changing');
-      void panel.offsetWidth; /* restart the swap-in animation */
-      panel.classList.add('is-changing');
-    }
+    positionTabIndicator(tab);
+    keepTabVisible(tab);
+    swapPanelContent(tab.getAttribute('data-mode'));
     if (moveFocus) tab.focus();
   }
 
   tabs.forEach(function (tab, index) {
-    tab.addEventListener('click', function () {
-      selectTab(tab, false);
-    });
+    tab.addEventListener('click', function () { selectTab(tab, false); });
     tab.addEventListener('keydown', function (event) {
       var next = null;
-      switch (event.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-          next = tabs[(index + 1) % tabs.length];
-          break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
-          next = tabs[(index - 1 + tabs.length) % tabs.length];
-          break;
-        case 'Home':
-          next = tabs[0];
-          break;
-        case 'End':
-          next = tabs[tabs.length - 1];
-          break;
-        default:
-          return;
-      }
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = tabs[(index + 1) % tabs.length];
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = tabs[(index - 1 + tabs.length) % tabs.length];
+      if (event.key === 'Home') next = tabs[0];
+      if (event.key === 'End') next = tabs[tabs.length - 1];
+      if (!next) return;
       event.preventDefault();
       selectTab(next, true);
     });
   });
 
-  activeTab = tabs.filter(function (tab) {
-    return tab.getAttribute('aria-selected') === 'true';
-  })[0] || tabs[0] || null;
+  activeTab = tabs.filter(function (tab) { return tab.getAttribute('aria-selected') === 'true'; })[0] || tabs[0] || null;
+  if (activeTab) {
+    var initialMode = activeTab.getAttribute('data-mode');
+    renderPropertyMode(initialMode);
+    positionTabIndicator(activeTab);
+  }
+
+  window.addEventListener('resize', function () {
+    if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(function () {
+      positionTabIndicator(activeTab);
+      resizeFrame = null;
+    });
+  });
 
   /* ------------------------------------------------------------------ *
    *  India rollout-planning market selector                             *
