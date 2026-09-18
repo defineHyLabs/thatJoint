@@ -206,7 +206,7 @@
   function intelligenceIn() {
     var visual = document.querySelector('.intelligence-visual');
     if (!visual) return;
-    gsap.from(visual.querySelectorAll('.home-card, .signal-card'), {
+    gsap.from(visual.querySelectorAll('.portfolio-stage, .portfolio-context'), {
       y: 42, autoAlpha: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out',
       scrollTrigger: { trigger: visual, start: 'top 82%', once: true }
     });

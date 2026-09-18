@@ -11,7 +11,7 @@
   <link rel="preload" as="image" href="assets/hero-urban-homes.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A459FF'/%3E%3Cpath d='M7 9h18v4h-7v12h-4V13H7z' fill='white'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=20260916-6" />
+  <link rel="stylesheet" href="styles.css?v=20260918-3" />
   <noscript><style>.loader { display: none !important; }</style></noscript>
 </head>
 <body>
@@ -55,14 +55,6 @@
           </div>
           <figure class="editorial-image reveal"><img src="assets/editorial-solar-home.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustrated brick home with solar panels and a planted garden" /><figcaption>Every moving part</figcaption></figure>
         </div>
-      </div>
-    </section>
-
-    <section class="statistics" aria-label="Platform principles">
-      <div class="statistics-inner">
-        <article class="stat-card stat-visibility reveal"><div class="stat-card-head"><p>Operational visibility</p><span>01</span></div><strong>LIVE</strong><ul><li>Rent due and received</li><li>Repairs waiting on action</li><li>Renewals approaching</li></ul></article>
-        <article class="stat-card stat-source reveal"><div class="stat-card-head"><p>Shared source of truth</p><span>02</span></div><strong>ONE</strong><ul><li>Property and resident history</li><li>Payments and documents</li><li>Every update in context</li></ul></article>
-        <article class="stat-card stat-workflows reveal"><div class="stat-card-head"><p>Core workflows</p><span>03</span></div><strong>04</strong><ul><li>Rent and payments</li><li>Residents and communication</li><li>Repairs and records</li></ul></article>
       </div>
     </section>
 
@@ -151,7 +143,22 @@
 
     <section class="intelligence section-pad" id="intelligence" aria-labelledby="intelligence-title">
       <div class="intelligence-copy"><p class="eyebrow reveal"><span>05</span><b>Connected intelligence</b></p><h2 class="display split-heading" id="intelligence-title">The answer,<br /><em>already in context.</em></h2><p class="reveal">Daily operations create useful signals. THΛTJOINT keeps those signals close to the records behind them, so teams can review what needs attention without losing the human story.</p><button class="button button-dark open-demo reveal" type="button">Explore a pilot <span aria-hidden="true">↗</span></button></div>
-      <div class="intelligence-visual reveal"><figure class="home-card home-card-main"><img src="assets/intelligence-connected-homes-a.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Illustrated pair of modern connected homes in a landscaped setting" /></figure><figure class="home-card home-card-offset"><img src="assets/intelligence-connected-homes-b.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Alternate view of two modern connected homes" /></figure><div class="signal-card" aria-label="Example operational signal"><div><span>PORTFOLIO SIGNAL</span><i>● READY</i></div><strong>03</strong><p>items grouped for review</p><ul><li>Renewal approaching</li><li>Repair awaiting update</li><li>Payment record to review</li></ul></div></div>
+      <div class="intelligence-visual reveal">
+        <figure class="portfolio-stage">
+          <picture>
+            <source type="image/avif" srcset="assets/intelligence-living-portfolio-overlay-768.avif 768w, assets/intelligence-living-portfolio-overlay-1440.avif 1440w" sizes="(max-width: 760px) 100vw, 58vw" />
+            <source type="image/webp" srcset="assets/intelligence-living-portfolio-overlay-768.webp 768w, assets/intelligence-living-portfolio-overlay-1440.webp 1440w" sizes="(max-width: 760px) 100vw, 58vw" />
+            <img class="portfolio-landscape" src="assets/intelligence-living-portfolio-overlay-1440.webp" width="1440" height="960" loading="lazy" decoding="async" alt="Stylized isometric landscape with four property types connected through one shared garden" />
+          </picture>
+          <figcaption><span><i aria-hidden="true"></i>Living portfolio</span><b>04 properties / 01 shared context</b></figcaption>
+          <ol class="portfolio-signals" aria-label="Example connected portfolio signals">
+            <li class="signal-payment"><span>Rent</span><strong>Payment received</strong><small>Just now</small></li>
+            <li class="signal-repair"><span>Repair</span><strong>Needs review</strong><small>Home 014</small></li>
+            <li class="signal-renewal"><span>Lease</span><strong>Renewal approaching</strong><small>In 30 days</small></li>
+          </ol>
+        </figure>
+        <div class="portfolio-context"><span>Every signal remains attached to the property, people, and history behind it.</span><b>Context travels with the work <i aria-hidden="true">→</i></b></div>
+      </div>
     </section>
 
     <section class="contact section-pad" id="contact" aria-labelledby="contact-title"><p class="eyebrow eyebrow-light reveal"><span>06</span><b>Next step</b></p><h2 class="split-heading" id="contact-title">Make the whole<br />portfolio click.</h2><div class="contact-foot reveal"><p>Start with one property, one workflow, or one operational pain point. Build from a shared view.</p><button class="contact-button open-demo" type="button"><span>Request a pilot</span><b aria-hidden="true">↗</b></button></div></section>
@@ -161,6 +168,6 @@
 
   <dialog id="demoDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDescription"><form method="dialog" id="demoForm"><div class="dialog-head"><span>THΛTJOINT / PILOT REQUEST</span><button class="dialog-close" value="cancel" type="submit" formnovalidate aria-label="Close dialog">×</button></div><h2 id="dialogTitle">Start with<br /><em>one property.</em></h2><p id="dialogDescription">Tell us where your team loses time today.</p><div class="form-grid"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required placeholder="Your name" /><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /><label for="focus">Pilot focus</label><select id="focus" name="focus" required><option value="">Choose a workflow</option><option>Rent and payments</option><option>Resident operations</option><option>Repairs and maintenance</option><option>Documents and records</option><option>Connected portfolio view</option></select></div><button class="submit-button" type="submit"><span>Request a pilot</span><b aria-hidden="true">↗</b></button><small>This prototype form does not transmit or store information.</small></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Thanks—this prototype request was completed locally.</div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script><script src="app.js?v=20260916-5" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script><script src="app.js?v=20260918-1" defer></script>
 </body>
 </html>
