@@ -1,1 +1,8 @@
 .DS_Store
+
+# Temporary GitHub Pages publishing directory
+_site/
+
+# Python validation caches
+__pycache__/
+*.py[cod]

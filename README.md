@@ -16,25 +16,39 @@ No package installation or build step is required.
 ## Run locally
 
 ```bash
-cd /Users/chirag/Desktop/thatjoint
-python3 -m http.server 8000 --directory dist
+cd /Users/chirag/Desktop/thatJoint
+python3 -m http.server 8000
 ```
 
 Open `http://localhost:8000`.
+
+## Deployment
+
+The GitHub Pages workflow packages the root site files (`index.html`,
+`styles.css`, `app.js`, and `assets/`) into a clean deployment artifact. It
+validates required files and local asset references before uploading.
+
+Run the same validation locally with:
+
+```bash
+python3 scripts/check_site.py .
+```
+
+To publish, commit the root site files and workflow changes, push to `main`,
+and configure GitHub Pages to use **GitHub Actions** as its source.
 
 ## Structure
 
 ```text
 thatjoint/
+├── .github/workflows/static.yml
+├── assets/
+├── app.js
+├── index.html
+├── scripts/check_site.py
+├── styles.css
 ├── README.md
-├── docs/DESIGN-NOTES.md
-└── dist/
-    ├── assets/
-    │   ├── thatjoint-logo.png
-    │   └── thatjoint-property.png
-    ├── app.js
-    ├── index.html
-    └── styles.css
+└── docs/DESIGN-NOTES.md
 ```
 
 ## Interactions
