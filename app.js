@@ -72,6 +72,7 @@
       heroIn();
       revealOnScroll();
       heroParallax();
+      storyParallax();
       platformMotion();
       intelligenceIn();
       enableOperationsScroll(operationsCarousel);
@@ -123,6 +124,19 @@
       {
         yPercent: 4, ease: 'none',
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+  }
+
+  function storyParallax() {
+    var section = document.querySelector('.story');
+    var image = document.querySelector('.editorial-image img');
+    if (!section || !image) return;
+    gsap.fromTo(image,
+      { y: -18 },
+      {
+        y: 18,
+        ease: 'none',
+        scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 0.7 }
       });
   }
 
