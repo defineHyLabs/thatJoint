@@ -58,7 +58,7 @@
 
   window.setTimeout(finishLoader, 4500); /* safety net */
   runLoader();
-  initOperationsCarousel();
+  var operationsCarousel = initOperationsCarousel();
 
   /* ------------------------------------------------------------------ *
    *  Motion router                                                      *
@@ -74,6 +74,7 @@
       heroParallax();
       platformMotion();
       intelligenceIn();
+      enableOperationsScroll(operationsCarousel);
       return;
     }
 
@@ -150,11 +151,13 @@
     var next = document.getElementById('opsNext');
     var progress = document.getElementById('opsProgress');
     var status = document.getElementById('opsStatus');
+    var step = document.getElementById('opsStep');
     if (!track || !previous || !next) return;
 
     var slides = Array.prototype.slice.call(track.querySelectorAll('.ops-slide'));
     var activeIndex = 0;
     var scrollFrame = null;
+    var scrollToSlide = null;
 
     function slideTitle(index) {
       var heading = slides[index] && slides[index].querySelector('h3');
@@ -166,6 +169,7 @@
       previous.disabled = activeIndex === 0;
       next.disabled = activeIndex === slides.length - 1;
       if (progress) progress.style.width = (((activeIndex + 1) / slides.length) * 100) + '%';
+      if (step) step.textContent = pad(activeIndex + 1) + ' / ' + pad(slides.length);
       if (status) status.textContent = 'Step ' + (activeIndex + 1) + ' of ' + slides.length + ': ' + slideTitle(activeIndex) + '.';
     }
 
@@ -183,6 +187,7 @@
 
     function goTo(index) {
       var target = Math.max(0, Math.min(index, slides.length - 1));
+      if (scrollToSlide) { scrollToSlide(target); return; }
       var firstOffset = slides[0] ? slides[0].offsetLeft : 0;
       track.scrollTo({ left: slides[target].offsetLeft - firstOffset, behavior: reduced ? 'auto' : 'smooth' });
       sync(target);
@@ -196,11 +201,86 @@
       goTo(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
     });
     track.addEventListener('scroll', function () {
+      if (scrollToSlide) return;
       if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
       scrollFrame = window.requestAnimationFrame(function () { nearestSlide(); scrollFrame = null; });
     }, { passive: true });
-    window.addEventListener('resize', nearestSlide);
+    window.addEventListener('resize', function () {
+      if (!scrollToSlide) nearestSlide();
+    });
     sync(0);
+
+    // Desktop scroll mode reuses the same controls; mobile and reduced-motion
+    // keep the native, keyboard-accessible horizontal carousel.
+    return {
+      setScrollHandler: function (handler) {
+        scrollToSlide = handler;
+        if (!handler) nearestSlide();
+      },
+      sync: sync
+    };
+  }
+
+  function enableOperationsScroll(controls) {
+    var story = document.querySelector('.ops-story');
+    var track = document.getElementById('opsTrack');
+    if (!story || !track || !controls) return;
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.ops-slide'));
+    if (slides.length < 2) return;
+
+    var media = gsap.matchMedia();
+    media.add('(min-width: 1101px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)', function () {
+      var last = slides.length - 1;
+      var activeIndex = -1;
+      story.classList.add('ops-story-active');
+      track.scrollLeft = 0;
+
+      // One card at a time; pauses leave room to read between transitions.
+      var timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: story,
+          start: 'top 92px',
+          end: function () { return '+=' + timeline.duration() * Math.max(440, window.innerHeight * 0.68); },
+          pin: true,
+          scrub: 0.45,
+          invalidateOnRefresh: true,
+          onUpdate: function (self) {
+            var index = Math.min(last, Math.floor(self.progress * timeline.duration() + 0.55));
+            if (index === activeIndex) return;
+            activeIndex = index;
+            controls.sync(index);
+          }
+        }
+      });
+
+      timeline.addLabel('step-0', 0);
+      for (var i = 1; i < slides.length; i += 1) {
+        timeline.to(slides[i - 1], {
+          yPercent: -12, scale: 0.93, opacity: 0, duration: 0.55, ease: 'power2.inOut'
+        }, i - 1 + 0.18);
+        timeline.fromTo(slides[i], { yPercent: 110 }, {
+          yPercent: 0, duration: 0.55, ease: 'power2.inOut'
+        }, i - 1 + 0.18);
+        timeline.addLabel('step-' + i, i);
+      }
+      // Keep the final card visible before the section releases its pin.
+      timeline.set({}, {}, last + 0.45);
+
+      controls.setScrollHandler(function (index) {
+        var trigger = timeline.scrollTrigger;
+        window.scrollTo({
+          top: trigger.start + (trigger.end - trigger.start) * timeline.labels['step-' + index] / timeline.duration(),
+          behavior: 'smooth'
+        });
+      });
+
+      return function () {
+        controls.setScrollHandler(null);
+        story.classList.remove('ops-story-active');
+        gsap.set(slides, { clearProps: 'transform,opacity' });
+      };
+    });
   }
 
   function intelligenceIn() {

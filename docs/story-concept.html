@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <base href="../" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#B9D2E0" />
   <meta name="description" content="THATJOINT connects rent, residents, repairs, and documents in one calm operating system for modern rental portfolios." />
-  <title>THΛTJOINT — Rental operations, connected</title>
+  <title>Image study — THΛTJOINT — Rental operations, connected</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero-urban-homes.webp" type="image/webp" fetchpriority="high" />
@@ -13,8 +14,40 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23A459FF'/%3E%3Cpath d='M7 9h18v4h-7v12h-4V13H7z' fill='white'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css?v=20260927-1" />
   <noscript><style>.loader { display: none !important; }</style></noscript>
+
+<style>
+  body[data-image-study="proposed"] .story-composition .display { grid-row: 1; }
+  body[data-image-study="proposed"] .story-copy { grid-area: 2 / 1 / 3 / span 6; padding-top: 0; margin-top: clamp(64px, 6vw, 96px); }
+  body[data-image-study="proposed"] .story-intro { max-width: 550px; }
+  body[data-image-study="proposed"] .principles { column-gap: 20px; }
+  body[data-image-study="proposed"] .principles h3 { font-size: 16px; }
+  body[data-image-study="proposed"] .editorial-image { left: auto; grid-area: 2 / 7 / 3 / -1; width: 138%; max-width: 980px; margin: -18px calc(var(--layout-gutter) * -1.85) 0 0; align-self: center; justify-self: end; }
+  body[data-image-study="proposed"] .editorial-image img { transform: translate3d(0, var(--study-drift, 0px), 0); }
+  body[data-image-study="proposed"] .editorial-image figcaption { margin-right: 25px; margin-top: 20px; }
+  .study-controls { position: fixed; z-index: 9999; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 24px; padding: 8px 9px 8px 20px; background: #2b2b2b; border: 1px solid #515151; border-radius: 999px; box-shadow: 0 5px 25px #0002; color: #fff; font: 12px/1.2 var(--body); white-space: nowrap; }
+  .study-controls span { color: #b9b9b9; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+  .study-controls div { display: flex; gap: 4px; }
+  .study-controls button { padding: 12px 18px; border-radius: 999px; border: 0; background: transparent; color: #b9b9b9; font: inherit; cursor: pointer; }
+  .study-controls button[aria-pressed="true"] { background: #fff; color: #2b2b2b; }
+  .study-controls button:focus-visible { outline: 2px solid #a459ff; outline-offset: 3px; }
+  @media (min-width: 761px) and (max-width: 1100px) {
+    body[data-image-study="proposed"] .editorial-image { width: 135%; margin-right: -16vw; }
+  }
+  @media (max-width: 760px) {
+    body[data-image-study="proposed"] .story-copy { margin-top: 42px; }
+    body[data-image-study="proposed"] .editorial-image { width: 118%; max-width: 700px; margin: 42px -18% 0 0; align-self: flex-end; }
+    body[data-image-study="proposed"] .editorial-image figcaption { margin-right: 0; }
+    .study-controls { gap: 10px; padding-left: 14px; bottom: 12px; }
+    .study-controls button { padding: 11px 13px; }
+    .study-controls span { font-size: 9px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body[data-image-study="proposed"] .editorial-image img { transform: none; }
+  }
+</style>
+
 </head>
-<body>
+<body data-image-study="proposed">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="loader" id="loader" aria-hidden="true"><p><span>THΛTJOINT</span><b id="loaderCount">00</b></p><div class="loader-track"><span></span></div><p class="loader-note">Connecting the work</p></div>
 
@@ -53,7 +86,7 @@
               <li class="reveal"><span>04</span><h3>Keep documents in order.</h3></li>
             </ol>
           </div>
-          <figure class="editorial-image reveal"><img src="assets/editorial-solar-home.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustrated brick home with solar panels and a planted garden" /><figcaption>Every moving part</figcaption></figure>
+          <figure class="editorial-image reveal"><img src="assets/story-courtyard-concept.png" width="1448" height="1086" loading="lazy" decoding="async" alt="Original architectural miniature of a pale stone courtyard home with timber details and a planted garden" /><figcaption>Every moving part</figcaption></figure>
         </div>
       </div>
     </section>
@@ -172,5 +205,43 @@
   <dialog id="demoDialog" aria-labelledby="dialogTitle" aria-describedby="dialogDescription"><form method="dialog" id="demoForm"><div class="dialog-head"><span>THΛTJOINT / PILOT REQUEST</span><button class="dialog-close" value="cancel" type="submit" formnovalidate aria-label="Close dialog">×</button></div><h2 id="dialogTitle">Start with<br /><em>one property.</em></h2><p id="dialogDescription">Tell us where your team loses time today.</p><div class="form-grid"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required placeholder="Your name" /><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" /><label for="focus">Pilot focus</label><select id="focus" name="focus" required><option value="">Choose a workflow</option><option>Rent and payments</option><option>Resident operations</option><option>Repairs and maintenance</option><option>Documents and records</option><option>Connected portfolio view</option></select></div><button class="submit-button" type="submit"><span>Request a pilot</span><b aria-hidden="true">↗</b></button><small>This prototype form does not transmit or store information.</small></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Thanks—this prototype request was completed locally.</div>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script><script src="app.js?v=20260927-1" defer></script>
+
+<aside class="study-controls" aria-label="Compare house image concepts">
+  <span>House image study</span>
+  <div><button type="button" data-study="current" aria-pressed="false">Current</button><button type="button" data-study="proposed" aria-pressed="true">Proposed</button></div>
+</aside>
+<script>
+(function () {
+  const story = document.getElementById('story');
+  const figure = story.querySelector('.editorial-image');
+  const image = figure.querySelector('img');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let queued = false;
+  function update() {
+    queued = false;
+    const rect = story.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+    const travel = window.innerWidth <= 760 ? 16 : 36;
+    figure.style.setProperty('--study-drift', (reduce.matches ? 0 : (0.5 - progress) * travel) + 'px');
+  }
+  function schedule() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', schedule, {passive:true});
+  window.addEventListener('resize', schedule);
+  reduce.addEventListener('change', schedule);
+  document.querySelectorAll('[data-study]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      const proposed = button.dataset.study === 'proposed';
+      document.body.dataset.imageStudy = button.dataset.study;
+      image.src = proposed ? 'assets/story-courtyard-concept.png' : 'assets/editorial-solar-home.webp';
+      image.alt = proposed ? 'Original architectural miniature of a pale stone courtyard home with timber details and a planted garden' : 'Current brick house illustration';
+      document.querySelectorAll('[data-study]').forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      schedule();
+    });
+  });
+  update();
+})();
+</script>
+
 </body>
 </html>
