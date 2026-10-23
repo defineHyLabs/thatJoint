@@ -22,33 +22,62 @@ python3 -m http.server 8000
 
 Open `http://localhost:8000`.
 
-## Deployment
+## Deployment & CI/CD
 
-The GitHub Pages workflow packages the root site files (`index.html`,
-`styles.css`, `app.js`, and `assets/`) into a clean deployment artifact. It
-validates required files and local asset references before uploading.
+The repository implements automated CI/CD and Code Review via **GitHub Actions**:
 
-Run the same validation locally with:
+1. **Automated Code Review (`.github/workflows/ci.yml`)**:
+   - Executes on all Pull Requests and pushes targeting `main` or feature branches.
+   - Audits JavaScript syntax (`node --check`) and Python compiler readiness.
+   - Scans for leaked secrets/API keys, unsafe `eval()` or `document.write()` calls.
+   - Enforces HTML5 semantic accessibility (DOCTYPE, lang, viewport, alt text) and design token consistency.
+   - Simulates packaging into `_site/` to guarantee zero 404s or broken local assets.
+   - Emits structured review dashboards to `$GITHUB_STEP_SUMMARY`.
+
+2. **GitHub Pages Deployment (`.github/workflows/static.yml`)**:
+   - Packages all root site files (`index.html`, `building-tour.html`, `chatbot.html`, `*.css`, `*.js`, `assets/`, `.nojekyll`) into a deployment artifact.
+   - Validates the packaged artifact using `scripts/check_site.py` prior to publication.
+   - Deploys directly to GitHub Pages via `actions/deploy-pages@v5`.
+
+3. **Jekyll & GitHub Pages Compatibility**:
+   - THΛTJOINT features a bespoke, dark-architectural design system with custom Barlow Condensed and DM Sans typography, a Three.js 3D spatial tour, and a Generative AI companion interface.
+   - To prevent Jekyll themes (e.g. `jekyll-theme-primer`) from injecting conflicting layouts or stylesheets, `.nojekyll` is committed at the repository root and `_config.yml` explicitly sets `theme: ""`.
+   - Set GitHub Pages build source to **GitHub Actions** in repository settings.
+
+Run validation locally with:
 
 ```bash
+# Run complete multi-layer code review & security audit
+python3 scripts/code_review.py
+
+# Run static link and reference validation
 python3 scripts/check_site.py .
 ```
-
-To publish, commit the root site files and workflow changes, push to `main`,
-and configure GitHub Pages to use **GitHub Actions** as its source.
 
 ## Structure
 
 ```text
 thatjoint/
-├── .github/workflows/static.yml
-├── assets/
-├── app.js
-├── index.html
-├── scripts/check_site.py
-├── styles.css
-├── README.md
-└── docs/DESIGN-NOTES.md
+├── .github/
+│   └── workflows/
+│       ├── ci.yml                 # PR & branch automated code review
+│       └── static.yml             # GitHub Pages deployment workflow
+├── assets/                        # High-resolution property and brand assets
+├── scripts/
+│   ├── check_site.py              # Reference and asset link integrity validator
+│   └── code_review.py             # Multi-layer automated code review engine
+├── .nojekyll                      # Prevents Jekyll theme collision on GitHub Pages
+├── _config.yml                    # GitHub Pages metadata and theme override
+├── app.js                         # Homepage interactive orchestration
+├── building-tour.css              # 3D Tour styling and coordinate overlays
+├── building-tour.html             # Dedicated 3D Architectural Building Tour
+├── building-tour.js               # Three.js 3D building visualizer & floor selector
+├── chatbot.css                    # Sentinel AI Companion styling & SVG animations
+├── chatbot.html                   # Dedicated Generative AI Property Sentinel view
+├── chatbot.js                     # Generative AI companion engine & multi-turn memory
+├── index.html                     # Core platform homepage
+├── styles.css                     # Design system foundation and typography
+└── README.md
 ```
 
 ## Interactions

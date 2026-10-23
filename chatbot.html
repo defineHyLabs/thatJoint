@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#181C1E" />
+  <meta name="theme-color" content="#F1F3F6" />
   <meta name="description" content="THΛTJOINT Property Sentinel — Generative AI property companion with voice dictation, document parsing, and operational intelligence." />
   <title>THΛTJOINT / Property Sentinel AI Companion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,24 +14,28 @@
   <link rel="stylesheet" href="chatbot.css" />
   <style>
     body {
-      background: #0f1214;
+      background: var(--fog, #F1F3F6);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       padding: 0;
       margin: 0;
-      color: #f4f5f4;
+      color: var(--charcoal, #2B2B2B);
       font-family: var(--body, "DM Sans", Arial, sans-serif);
+      -webkit-font-smoothing: antialiased;
     }
     .companion-page-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 24px;
-      background: #161a1c;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--line, rgba(43, 43, 43, 0.16));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
     .companion-page-nav {
       display: flex;
@@ -42,7 +46,7 @@
       text-transform: uppercase;
     }
     .companion-page-nav a {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--grey, #7A7A7A);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -53,7 +57,8 @@
     .companion-wrapper-full {
       flex: 1 1 auto;
       display: flex;
-      padding: 20px 24px;
+      flex-direction: column;
+      padding: 32px 24px 40px;
       box-sizing: border-box;
       max-width: 1400px;
       width: 100%;
@@ -61,20 +66,20 @@
     }
     .companion-wrapper-full .tj-companion-container {
       width: 100%;
-      height: calc(100vh - 110px);
-      max-height: none;
+      height: calc(100vh - 220px);
+      min-height: 620px;
+      max-height: 900px;
     }
     @media (max-width: 768px) {
       .companion-page-header {
         padding: 12px 16px;
       }
       .companion-wrapper-full {
-        padding: 0;
+        padding: 16px 14px 24px;
       }
       .companion-wrapper-full .tj-companion-container {
-        height: calc(100vh - 65px);
-        border: 0;
-        border-radius: 0;
+        height: calc(100vh - 170px);
+        min-height: 540px;
       }
     }
   </style>
@@ -90,6 +95,15 @@
   </header>
 
   <main class="companion-wrapper-full">
+    <!-- Editorial Intro matching THATJOINT Design System -->
+    <div class="companion-hero-intro">
+      <p class="eyebrow"><span>05</span><b>Connected Intelligence Layer</b></p>
+      <h1 class="companion-display-title">The whole property,<br /><em>already in context.</em></h1>
+      <p class="companion-intro-copy">
+        Continuous operational monitoring, verified tenancy covenants, instant work order dispatch, and live rooftop microgrid telemetry for <strong>Home 014 (Oakview Courtyard Residences)</strong>.
+      </p>
+    </div>
+
     <div id="companionApp" style="width: 100%;"></div>
   </main>
 

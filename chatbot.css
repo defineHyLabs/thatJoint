@@ -1,63 +1,72 @@
 /* ==========================================================================
-   THATJOINT / GENERATIVE AI PROPERTY MASCOT STYLESHEET
-   Mascot: "The Sentinel" (Red Panda Theme)
-   Multimodal Input: Voice Dictation, Drag & Drop Lease Strip, Document Parsing
-   Packaging Tiers: Tier 1 (Local Heuristic), Tier 2 (BYO API Key), Tier 3 (Enterprise Webhook)
-   Design System Tokens: --charcoal, --grey, --purple, --fog, --display, --body
+   THATJOINT / PROPERTY SENTINEL AI COMPANION STYLESHEET
+   Aesthetic: Architectural Editorial Minimalism matched to THATJOINT GitHub Pages
+   Design Tokens:
+     --charcoal: #2B2B2B, --grey: #7A7A7A, --purple: #A459FF,
+     --fog: #F1F3F6, --blue: #7EA2AD, --mint: #CFEDD9, --white: #FFFFFF,
+     --line: rgba(43, 43, 43, 0.16)
+   Typography:
+     --display: "Barlow Condensed", "Arial Narrow", sans-serif
+     --body: "DM Sans", Arial, sans-serif
    ========================================================================== */
 
 :root {
-  --mascot-carbon: #181C1E;
-  --mascot-carbon-deep: #101315;
-  --mascot-carbon-surface: #21272B;
-  --mascot-carbon-elevated: #2A3237;
-  --mascot-border: rgba(255, 255, 255, 0.09);
-  --mascot-border-strong: rgba(255, 255, 255, 0.16);
-  --mascot-border-subtle: rgba(255, 255, 255, 0.05);
-  --mascot-text-primary: #F4F5F4;
-  --mascot-text-muted: rgba(244, 245, 244, 0.65);
-  --mascot-text-dim: rgba(244, 245, 244, 0.40);
-  --mascot-accent: var(--purple, #A459FF);
-  --mascot-accent-glow: rgba(164, 89, 255, 0.3);
-  --mascot-mint: var(--mint, #CFEDD9);
-  --mascot-stone: #EDEBE4;
-  --mascot-terracotta: #D45D3A;
-  --mascot-terracotta-dark: #A83E1E;
+  --tj-charcoal: #2B2B2B;
+  --tj-charcoal-deep: #1E2325;
+  --tj-grey: #7A7A7A;
+  --tj-purple: #A459FF;
+  --tj-purple-tint: #F1E8FF;
+  --tj-purple-glow: rgba(164, 89, 255, 0.22);
+  --tj-fog: #F1F3F6;
+  --tj-blue: #7EA2AD;
+  --tj-mint: #CFEDD9;
+  --tj-mint-dark: #1E6B52;
+  --tj-white: #FFFFFF;
+  --tj-line: rgba(43, 43, 43, 0.16);
+  --tj-line-subtle: rgba(43, 43, 43, 0.08);
+  --tj-line-strong: rgba(43, 43, 43, 0.28);
+  --tj-surface: #FFFFFF;
+  --tj-surface-alt: #F8FAFA;
+  --tj-stone: #EDEBE4;
+  --tj-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --tj-body: "DM Sans", Arial, sans-serif;
 }
 
 /* ------------------------------------------------------------------ *
- *  Main Container & Drawer Presentation                              *
+ *  Main Companion Workspace & Presentation                           *
  * ------------------------------------------------------------------ */
 .tj-companion-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 600px;
-  max-height: 920px;
-  background: var(--mascot-carbon);
-  color: var(--mascot-text-primary);
-  border: 1px solid var(--mascot-border);
+  min-height: 640px;
+  max-height: 940px;
+  background: var(--tj-fog);
+  color: var(--tj-charcoal);
+  border: 1px solid var(--tj-line);
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.52), 0 0 0 1px var(--mascot-border);
-  font-family: var(--body, "DM Sans", Arial, sans-serif);
+  box-shadow: 0 32px 70px rgba(31, 49, 54, 0.12), 0 0 0 1px var(--tj-line-subtle);
+  font-family: var(--tj-body);
   position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Drawer overlay mode (when toggled from main site) */
+/* Drawer overlay presentation (when toggled via [⌘K] from index.html) */
 .tj-companion-drawer {
   position: fixed;
   z-index: 250;
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(1060px, 95vw);
+  width: min(1040px, 95vw);
   max-height: 100vh;
   border-radius: 0;
-  border-left: 1px solid var(--mascot-border-strong);
+  border-left: 1px solid var(--tj-line-strong);
   border-top: 0;
   border-right: 0;
   border-bottom: 0;
+  box-shadow: -24px 0 80px rgba(31, 49, 54, 0.2);
   transform: translateX(101%);
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), visibility 0s 0.45s;
   visibility: hidden;
@@ -73,7 +82,7 @@
   position: fixed;
   inset: 0;
   z-index: 240;
-  background: rgba(10, 14, 16, 0.76);
+  background: rgba(43, 43, 43, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;
@@ -88,11 +97,72 @@
 }
 
 /* ------------------------------------------------------------------ *
- *  Header & Sentinel Mascot Hero Card                                 *
+ *  Companion Page Intro (Matches THATJOINT Editorial Story Sections)  *
+ * ------------------------------------------------------------------ */
+.companion-hero-intro {
+  margin-bottom: 24px;
+}
+
+.companion-hero-intro .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 9px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--tj-charcoal);
+  margin-bottom: 12px;
+}
+
+.companion-hero-intro .eyebrow span {
+  width: 29px;
+  height: 29px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--tj-line);
+  border-radius: 50%;
+  font-weight: 500;
+  background: var(--tj-white);
+}
+
+.companion-hero-intro .eyebrow b {
+  font-weight: 500;
+}
+
+.companion-display-title {
+  margin: 0 0 10px 0;
+  font-family: var(--tj-display);
+  font-size: clamp(40px, 4.2vw, 68px);
+  font-weight: 500;
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--tj-charcoal);
+}
+
+.companion-display-title em {
+  color: var(--tj-grey);
+  font-style: italic;
+}
+
+.companion-intro-copy {
+  margin: 0;
+  max-width: 580px;
+  color: var(--tj-grey);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.companion-intro-copy strong {
+  color: var(--tj-charcoal);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Header & Mascot Hero Card                                          *
  * ------------------------------------------------------------------ */
 .tj-sentinel-header {
-  background: linear-gradient(180deg, var(--mascot-carbon-deep) 0%, rgba(24, 28, 30, 0.98) 100%);
-  border-bottom: 1px solid var(--mascot-border);
+  background: var(--tj-white);
+  border-bottom: 1px solid var(--tj-line);
   padding: 16px 22px;
   display: flex;
   flex-direction: column;
@@ -116,40 +186,41 @@
 }
 
 /* ------------------------------------------------------------------ *
- *  Interactive Mascot Wrapper & Reactive SVG States                   *
+ *  Architectural Vector Mascot & Reactive SVG States                 *
  * ------------------------------------------------------------------ */
 .tj-mascot-wrapper {
   position: relative;
-  width: 72px;
-  height: 72px;
+  width: 68px;
+  height: 68px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, #2D363B 0%, #121618 100%);
-  border: 1.5px solid var(--mascot-border-strong);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 14px rgba(0, 0, 0, 0.6);
+  background: radial-gradient(circle at 40% 35%, #FFFFFF 0%, #EDEBE4 100%);
+  border: 1.5px solid var(--tj-line);
+  box-shadow: 0 4px 16px rgba(43, 43, 43, 0.08);
   display: grid;
   place-items: center;
   overflow: visible;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
   cursor: pointer;
 }
 
 .tj-mascot-wrapper:hover {
-  border-color: var(--mascot-accent);
-  box-shadow: 0 0 22px var(--mascot-accent-glow);
+  border-color: var(--tj-purple);
+  box-shadow: 0 6px 20px rgba(164, 89, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .tj-mascot-svg {
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   display: block;
   overflow: visible;
 }
 
-/* Audio Pulse Waveform Rings (Listening State) */
+/* Voice Waveform Rings (Listening State) */
 .tj-mascot-voice-rings {
   position: absolute;
-  inset: -10px;
+  inset: -8px;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
@@ -166,7 +237,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid var(--mascot-accent);
+  border: 1.5px solid var(--tj-purple);
   animation: voiceWavePulse 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
 }
 
@@ -175,17 +246,17 @@
 }
 
 @keyframes voiceWavePulse {
-  0% { transform: scale(0.9); opacity: 0.95; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0% { transform: scale(0.92); opacity: 0.95; }
+  100% { transform: scale(1.48); opacity: 0; }
 }
 
-/* Rotating Glowing Halo (Thinking State) */
+/* Rotating Thinking Halo (Thinking State) */
 .tj-mascot-thinking-halo {
   position: absolute;
-  inset: -8px;
+  inset: -7px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(164, 89, 255, 0.55);
-  box-shadow: 0 0 16px rgba(164, 89, 255, 0.35);
+  border: 1.5px dashed rgba(164, 89, 255, 0.65);
+  box-shadow: 0 0 14px rgba(164, 89, 255, 0.25);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -201,7 +272,7 @@
   to { transform: rotate(360deg); }
 }
 
-/* 1. data-state="idle": Subtle Breathing and Ear Flick */
+/* data-state="idle": Subtle Breathing and Ear Flick */
 .tj-mascot-wrapper[data-state="idle"] .mascot-head {
   animation: mascotBreathe 4s ease-in-out infinite alternate;
   transform-origin: 32px 32px;
@@ -256,7 +327,7 @@
   96%, 98% { transform: scaleY(0.1); opacity: 0; }
 }
 
-/* 2. data-state="speaking": Mouth Animation during Response */
+/* data-state="speaking": Mouth Animation during Response */
 .tj-mascot-wrapper[data-state="speaking"] .mascot-mouth {
   animation: mouthSpeak 0.28s ease-in-out infinite alternate;
   transform-origin: 32px 42px;
@@ -286,24 +357,24 @@
   height: 14px;
   border-radius: 50%;
   background: #34d399;
-  border: 2px solid var(--mascot-carbon-deep);
-  box-shadow: 0 0 8px rgba(52, 211, 153, 0.7);
+  border: 2px solid var(--tj-white);
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
   transition: all 0.3s ease;
 }
 
 .tj-mascot-wrapper[data-state="listening"] .tj-mascot-status-dot {
-  background: var(--mascot-accent);
-  box-shadow: 0 0 12px rgba(164, 89, 255, 0.85);
+  background: var(--tj-purple);
+  box-shadow: 0 0 10px rgba(164, 89, 255, 0.8);
 }
 
 .tj-mascot-wrapper[data-state="thinking"] .tj-mascot-status-dot {
   background: #fbbf24;
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.85);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
 }
 
 .tj-mascot-wrapper[data-state="speaking"] .tj-mascot-status-dot {
   background: #38bdf8;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.85);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
 }
 
 /* Profile Typography */
@@ -320,43 +391,43 @@
   font-size: 8px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
 }
 
 .tj-sentinel-meta-tag b {
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
   font-weight: 600;
 }
 
 .tj-sentinel-name {
   margin: 0;
-  font-family: var(--display, "Barlow Condensed", sans-serif);
+  font-family: var(--tj-display);
   font-size: 22px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--tj-charcoal);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .tj-sentinel-tier-chip {
   font-style: normal;
-  font-size: 10px;
-  font-family: var(--body, "DM Sans", sans-serif);
+  font-size: 9px;
+  font-family: var(--tj-body);
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--mascot-mint);
-  background: rgba(207, 237, 217, 0.1);
+  color: var(--tj-purple);
+  background: var(--tj-purple-tint);
   padding: 2px 8px;
-  border-radius: 3px;
-  border: 1px solid rgba(207, 237, 217, 0.22);
+  border-radius: 99px;
+  border: 1px solid rgba(164, 89, 255, 0.25);
 }
 
 .tj-mascot-status-text {
   font-size: 11px;
-  color: var(--mascot-text-muted);
+  color: var(--tj-grey);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -364,10 +435,10 @@
 
 .tj-mascot-status-text i {
   font-style: normal;
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
 }
 
-/* Header Controls & Settings Launcher */
+/* Header Controls & Actions */
 .tj-sentinel-actions {
   display: flex;
   align-items: center;
@@ -378,23 +449,23 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--mascot-carbon-surface);
-  border: 1px solid var(--mascot-border);
-  color: var(--mascot-text-primary);
+  background: var(--tj-white);
+  border: 1px solid var(--tj-line);
+  color: var(--tj-charcoal);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 99px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .tj-tier-config-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--mascot-border-strong);
-  color: #fff;
+  background: var(--tj-charcoal);
+  color: var(--tj-white);
+  border-color: var(--tj-charcoal);
 }
 
 .tj-tier-config-btn i {
@@ -407,10 +478,10 @@
   height: 32px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--mascot-border);
-  background: transparent;
-  color: var(--mascot-text-muted);
-  border-radius: 3px;
+  border: 1px solid var(--tj-line);
+  background: var(--tj-white);
+  color: var(--tj-charcoal);
+  border-radius: 50%;
   font-size: 14px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -418,13 +489,13 @@
 }
 
 .tj-sentinel-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border-color: var(--mascot-border-strong);
+  background: var(--tj-charcoal);
+  color: var(--tj-white);
+  border-color: var(--tj-charcoal);
 }
 
 .tj-sentinel-icon-btn:focus-visible {
-  outline: 2px solid var(--mascot-accent);
+  outline: 2px solid var(--tj-purple);
   outline-offset: 2px;
 }
 
@@ -442,26 +513,30 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 9px;
-  border-radius: 3px;
-  border: 1px solid var(--mascot-border);
-  background: rgba(255, 255, 255, 0.03);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--tj-line);
+  background: var(--tj-white);
   font-size: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--mascot-text-muted);
+  color: var(--tj-charcoal);
   white-space: nowrap;
 }
 
 .tj-telemetry-chip b {
-  color: var(--mascot-accent);
+  color: var(--tj-grey);
   font-weight: 600;
 }
 
 .tj-telemetry-chip.highlight {
-  border-color: rgba(164, 89, 255, 0.4);
-  background: rgba(164, 89, 255, 0.08);
-  color: #fff;
+  border-color: rgba(164, 89, 255, 0.35);
+  background: var(--tj-purple-tint);
+  color: var(--tj-purple);
+}
+
+.tj-telemetry-chip.highlight b {
+  color: var(--tj-purple);
 }
 
 /* ------------------------------------------------------------------ *
@@ -473,7 +548,7 @@
   flex: 1 1 auto;
   min-height: 0;
   position: relative;
-  background: var(--mascot-carbon);
+  background: var(--tj-fog);
 }
 
 .tj-companion-feed {
@@ -485,14 +560,14 @@
   gap: 18px;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: rgba(43, 43, 43, 0.2) transparent;
 }
 
 .tj-companion-feed::-webkit-scrollbar {
   width: 5px;
 }
 .tj-companion-feed::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(43, 43, 43, 0.2);
   border-radius: 4px;
 }
 
@@ -501,17 +576,17 @@
   position: absolute;
   inset: 0;
   z-index: 40;
-  background: rgba(16, 20, 22, 0.90);
-  backdrop-filter: blur(8px);
-  border: 2px dashed var(--mascot-accent);
+  background: rgba(241, 243, 246, 0.94);
+  backdrop-filter: blur(6px);
+  border: 2px dashed var(--tj-purple);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
 .tj-dropzone-overlay.is-active {
@@ -524,16 +599,16 @@
 }
 
 .tj-dropzone-overlay strong {
-  font-family: var(--display, "Barlow Condensed", sans-serif);
+  font-family: var(--tj-display);
   font-size: 24px;
   font-weight: 500;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--tj-charcoal);
 }
 
 .tj-dropzone-overlay p {
-  color: var(--mascot-text-muted);
+  color: var(--tj-grey);
   font-size: 12px;
 }
 
@@ -569,59 +644,63 @@
   font-size: 8px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
   padding: 0 4px;
 }
 
 .tj-bubble-meta span.author {
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
   font-weight: 600;
 }
 
 .tj-bubble-meta time {
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
 }
 
 .tj-bubble-card {
-  padding: 16px 18px;
+  padding: 18px 20px;
   border-radius: 4px;
   font-size: 13px;
-  line-height: 1.6;
-  border: 1px solid var(--mascot-border);
-  background: var(--mascot-carbon-surface);
-  color: var(--mascot-text-primary);
+  line-height: 1.65;
+  border: 1px solid var(--tj-line);
+  background: var(--tj-white);
+  color: var(--tj-charcoal);
   position: relative;
+  box-shadow: 0 4px 20px rgba(31, 49, 54, 0.05);
 }
 
 .tj-bubble-wrap.user .tj-bubble-card {
-  background: var(--mascot-carbon-elevated);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--tj-charcoal);
+  border-color: var(--tj-charcoal);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(43, 43, 43, 0.14);
 }
 
 .tj-bubble-wrap.companion .tj-bubble-card {
-  background: #1c2225;
-  border-left: 2px solid var(--mascot-accent);
+  border-left: 3px solid var(--tj-purple);
 }
 
 .tj-bubble-card h4 {
   margin: 0 0 8px 0;
-  font-family: var(--display, "Barlow Condensed", sans-serif);
-  font-size: 19px;
+  font-family: var(--tj-display);
+  font-size: 21px;
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--tj-charcoal);
 }
 
 .tj-bubble-card h4 em {
   font-style: italic;
-  color: var(--mascot-accent);
+  color: var(--tj-grey);
 }
 
 .tj-bubble-card p {
   margin: 0 0 10px 0;
-  color: var(--mascot-text-muted);
+  color: #404040;
+}
+.tj-bubble-wrap.user .tj-bubble-card p {
+  color: rgba(255, 255, 255, 0.92);
 }
 .tj-bubble-card p:last-child {
   margin-bottom: 0;
@@ -634,15 +713,15 @@
   gap: 8px;
   padding: 6px 10px;
   margin-bottom: 8px;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--mascot-border-strong);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 3px;
   font-size: 10px;
   color: #fff;
 }
 
 .tj-user-attachment i {
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
   font-style: normal;
 }
 
@@ -650,38 +729,40 @@
  *  Rich Operational Cards inside Messages                            *
  * ------------------------------------------------------------------ */
 .tj-rich-card {
-  margin-top: 12px;
+  margin-top: 14px;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.28);
-  border: 1px solid var(--mascot-border);
-  padding: 14px;
+  background: var(--tj-surface-alt);
+  border: 1px solid var(--tj-line);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .tj-rich-card-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--mascot-border-subtle);
-  padding-bottom: 8px;
+  border-bottom: 1px solid var(--tj-line-subtle);
+  padding-bottom: 10px;
   font-size: 8px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
 }
 
 .tj-rich-card-head b {
-  color: #fff;
+  color: var(--tj-charcoal);
   font-weight: 600;
 }
 
 .tj-rich-card-head span.badge-pill {
-  color: var(--mascot-mint);
-  background: rgba(207, 237, 217, 0.12);
-  padding: 2px 7px;
-  border-radius: 2px;
+  color: var(--tj-mint-dark);
+  background: rgba(207, 237, 217, 0.8);
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
+  border: 1px solid rgba(30, 107, 82, 0.2);
 }
 
 /* Grid parameters for Lease, Work Orders, Solar Inverter */
@@ -692,10 +773,11 @@
 }
 
 .tj-param-box {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--mascot-border-subtle);
+  background: var(--tj-white);
+  border: 1px solid var(--tj-line-subtle);
   border-radius: 3px;
-  padding: 8px 10px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 4px rgba(43, 43, 43, 0.04);
 }
 
 .tj-param-box span {
@@ -703,46 +785,48 @@
   font-size: 7px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mascot-text-dim);
-  margin-bottom: 3px;
+  color: var(--tj-grey);
+  margin-bottom: 4px;
 }
 
 .tj-param-box strong {
   display: block;
-  font-family: var(--display, "Barlow Condensed", sans-serif);
-  font-size: 17px;
+  font-family: var(--tj-display);
+  font-size: 19px;
   font-weight: 500;
-  color: #fff;
+  letter-spacing: -0.015em;
+  color: var(--tj-charcoal);
   line-height: 1;
 }
 
 .tj-param-box small {
   display: block;
   font-size: 8px;
-  color: var(--mascot-mint);
-  margin-top: 3px;
+  color: var(--tj-purple);
+  font-weight: 500;
+  margin-top: 4px;
 }
 
 /* Card Action Buttons */
 .tj-card-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 8px;
   padding-top: 10px;
-  border-top: 1px solid var(--mascot-border-subtle);
+  border-top: 1px solid var(--tj-line-subtle);
 }
 
 .tj-card-btn {
-  border: 1px solid var(--mascot-border);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--mascot-text-primary);
+  border: 1px solid var(--tj-line);
+  background: var(--tj-white);
+  color: var(--tj-charcoal);
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 3px;
+  padding: 6px 14px;
+  border-radius: 99px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -751,27 +835,27 @@
 }
 
 .tj-card-btn:hover {
-  background: var(--mascot-accent);
-  color: #fff;
-  border-color: var(--mascot-accent);
+  background: var(--tj-purple);
+  color: var(--tj-white);
+  border-color: var(--tj-purple);
 }
 
 .tj-card-btn i {
   font-style: normal;
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
 }
 .tj-card-btn:hover i {
-  color: #fff;
+  color: var(--tj-white);
 }
 
 /* Document Scan Laser Animation */
 .tj-doc-scan-bar {
   position: relative;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
+  height: 3px;
+  background: rgba(43, 43, 43, 0.08);
   border-radius: 2px;
   overflow: hidden;
-  margin: 6px 0;
+  margin: 8px 0;
 }
 
 .tj-doc-scan-bar i {
@@ -780,7 +864,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(90deg, transparent, var(--mascot-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--tj-purple), transparent);
   animation: scanLaser 1.4s ease-in-out infinite;
 }
 
@@ -795,10 +879,10 @@
 .tj-input-dock {
   display: flex;
   flex-direction: column;
-  background: var(--mascot-carbon-deep);
-  border-top: 1px solid var(--mascot-border);
+  background: var(--tj-white);
+  border-top: 1px solid var(--tj-line);
   flex-shrink: 0;
-  padding: 12px 18px 16px 18px;
+  padding: 14px 20px 18px 20px;
   gap: 10px;
 }
 
@@ -806,7 +890,7 @@
 .tj-quick-pills {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
   padding-bottom: 2px;
@@ -815,14 +899,14 @@
 
 .tj-quick-pill {
   flex: 0 0 auto;
-  border: 1px solid var(--mascot-border);
-  background: var(--mascot-carbon-surface);
-  color: var(--mascot-text-muted);
+  border: 1px solid var(--tj-line);
+  background: var(--tj-fog);
+  color: var(--tj-charcoal);
   font-size: 8px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 5px 11px;
+  padding: 6px 13px;
   border-radius: 99px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -830,13 +914,13 @@
 }
 
 .tj-quick-pill:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border-color: var(--mascot-border-strong);
+  background: var(--tj-purple);
+  color: var(--tj-white);
+  border-color: var(--tj-purple);
 }
 
 .tj-quick-pill:focus-visible {
-  outline: 2px solid var(--mascot-accent);
+  outline: 2px solid var(--tj-purple);
   outline-offset: 2px;
 }
 
@@ -845,20 +929,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.14);
+  padding: 7px 14px;
+  background: var(--tj-surface-alt);
+  border: 1px dashed rgba(43, 43, 43, 0.22);
   border-radius: 4px;
-  font-size: 9px;
-  color: var(--mascot-text-dim);
+  font-size: 10px;
+  color: var(--tj-grey);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .tj-drop-strip:hover {
-  background: rgba(164, 89, 255, 0.05);
-  border-color: rgba(164, 89, 255, 0.4);
-  color: #fff;
+  background: var(--tj-purple-tint);
+  border-color: var(--tj-purple);
+  color: var(--tj-purple);
 }
 
 .tj-drop-strip-left {
@@ -868,14 +952,15 @@
 }
 
 .tj-drop-strip-left span.icon {
-  color: var(--mascot-accent);
+  color: var(--tj-purple);
 }
 
 .tj-drop-strip small {
   font-size: 8px;
-  color: var(--mascot-text-dim);
-  letter-spacing: 0.06em;
+  color: var(--tj-grey);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* Staged Attachment Tray */
@@ -883,12 +968,12 @@
   display: none;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 12px;
-  background: rgba(164, 89, 255, 0.08);
-  border: 1px solid rgba(164, 89, 255, 0.3);
+  padding: 8px 14px;
+  background: var(--tj-purple-tint);
+  border: 1px solid rgba(164, 89, 255, 0.35);
   border-radius: 4px;
-  font-size: 10px;
-  color: #fff;
+  font-size: 11px;
+  color: var(--tj-charcoal);
 }
 
 .tj-staged-attachment.is-visible {
@@ -906,24 +991,24 @@
 }
 
 .tj-staged-info strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .tj-staged-info small {
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
 }
 
 .tj-staged-remove-btn {
   background: transparent;
   border: 0;
-  color: var(--mascot-text-muted);
-  font-size: 15px;
+  color: var(--tj-grey);
+  font-size: 16px;
   cursor: pointer;
   padding: 0 4px;
   transition: color 0.2s;
 }
 .tj-staged-remove-btn:hover {
-  color: #fff;
+  color: var(--tj-charcoal);
 }
 
 /* Media Form Dock */
@@ -931,29 +1016,29 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--mascot-carbon-surface);
-  border: 1px solid var(--mascot-border);
-  border-radius: 4px;
+  background: var(--tj-surface-alt);
+  border: 1px solid var(--tj-line);
+  border-radius: 6px;
   padding: 4px 6px 4px 10px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tj-media-form:focus-within {
-  border-color: var(--mascot-accent);
-  box-shadow: 0 0 0 2px var(--mascot-accent-glow);
+  border-color: var(--tj-purple);
+  box-shadow: 0 0 0 2px var(--tj-purple-glow);
 }
 
 /* File Upload Button */
 .tj-attach-btn {
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
-  background: transparent;
-  border: 1px solid var(--mascot-border-subtle);
-  border-radius: 4px;
-  color: var(--mascot-text-muted);
+  background: var(--tj-white);
+  border: 1px solid var(--tj-line);
+  border-radius: 50%;
+  color: var(--tj-charcoal);
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
@@ -961,27 +1046,27 @@
 }
 
 .tj-attach-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border-color: var(--mascot-border-strong);
+  background: var(--tj-charcoal);
+  color: var(--tj-white);
+  border-color: var(--tj-charcoal);
 }
 
 .tj-attach-btn:focus-visible {
-  outline: 2px solid var(--mascot-accent);
+  outline: 2px solid var(--tj-purple);
   outline-offset: 2px;
 }
 
 /* Voice Input Mic Button */
 .tj-mic-btn {
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
-  background: transparent;
-  border: 1px solid var(--mascot-border-subtle);
-  border-radius: 4px;
-  color: var(--mascot-text-muted);
+  background: var(--tj-white);
+  border: 1px solid var(--tj-line);
+  border-radius: 50%;
+  color: var(--tj-charcoal);
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
@@ -990,15 +1075,15 @@
 }
 
 .tj-mic-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border-color: var(--mascot-border-strong);
+  background: var(--tj-charcoal);
+  color: var(--tj-white);
+  border-color: var(--tj-charcoal);
 }
 
 .tj-mic-btn.is-listening {
-  background: var(--mascot-accent);
-  color: #fff;
-  border-color: var(--mascot-accent);
+  background: var(--tj-purple);
+  color: var(--tj-white);
+  border-color: var(--tj-purple);
   box-shadow: 0 0 14px rgba(164, 89, 255, 0.6);
   animation: micListenPulse 1.2s infinite alternate;
 }
@@ -1009,7 +1094,7 @@
 }
 
 .tj-mic-btn:focus-visible {
-  outline: 2px solid var(--mascot-accent);
+  outline: 2px solid var(--tj-purple);
   outline-offset: 2px;
 }
 
@@ -1029,7 +1114,7 @@
 .tj-voice-live-waveform span {
   width: 2.5px;
   height: 100%;
-  background: var(--mascot-accent);
+  background: var(--tj-purple);
   border-radius: 2px;
   animation: liveWaveBar 0.8s ease-in-out infinite alternate;
 }
@@ -1051,44 +1136,44 @@
   background: transparent;
   border: 0;
   outline: none;
-  color: #fff;
-  font-family: var(--body, "DM Sans", Arial, sans-serif);
+  color: var(--tj-charcoal);
+  font-family: var(--tj-body);
   font-size: 13px;
-  line-height: 1.4;
-  padding: 8px 0;
+  line-height: 1.45;
+  padding: 8px 4px;
   resize: none;
   max-height: 120px;
   min-height: 20px;
 }
 
 .tj-companion-input::placeholder {
-  color: var(--mascot-text-dim);
+  color: var(--tj-grey);
   font-size: 12px;
 }
 
 /* Send Button */
 .tj-companion-send-btn {
   flex: 0 0 auto;
-  min-height: 34px;
+  min-height: 36px;
   border: 0;
-  border-radius: 3px;
-  padding: 0 16px;
-  background: var(--mascot-accent);
-  color: #fff;
-  font-family: var(--body, "DM Sans", sans-serif);
+  border-radius: 99px;
+  padding: 0 18px;
+  background: var(--tj-purple);
+  color: var(--tj-white);
+  font-family: var(--tj-body);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .tj-companion-send-btn:hover {
-  opacity: 0.92;
+  background: var(--tj-charcoal);
   transform: translateY(-1px);
 }
 
@@ -1097,32 +1182,38 @@
 }
 
 .tj-companion-send-btn:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--tj-charcoal);
   outline-offset: 2px;
 }
 
 /* ------------------------------------------------------------------ *
- *  Client Packaging / Settings Modal (<dialog id="configModal">)      *
+ *  Client Packaging Modal (<dialog id="configModal">)                *
+ *  Matches THATJOINT <dialog id="demoDialog"> Styling                *
  * ------------------------------------------------------------------ */
 dialog#configModal {
-  width: min(720px, calc(100% - 32px));
+  width: min(760px, calc(100% - 30px));
   max-height: 94vh;
   border: 0;
   padding: 0;
-  background: var(--fog, #F1F3F6);
-  color: var(--charcoal, #2B2B2B);
-  border-radius: 6px;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+  background: var(--tj-fog);
+  color: var(--tj-charcoal);
+  border-radius: 4px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
 }
 
 dialog#configModal::backdrop {
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 dialog#configModal[open] {
   animation: dialogIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dialogIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .config-modal-inner {
@@ -1135,54 +1226,56 @@ dialog#configModal[open] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--line, rgba(43, 43, 43, 0.2));
+  border-bottom: 1px solid var(--tj-line);
   padding-bottom: 16px;
   font-size: 8px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--grey, #7A7A7A);
+  color: var(--tj-grey);
 }
 
 .config-head span b {
-  color: var(--purple, #A459FF);
+  color: var(--tj-purple);
+  font-weight: 600;
 }
 
 .config-close-btn {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--line, rgba(43, 43, 43, 0.2));
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--tj-line);
   border-radius: 50%;
   background: transparent;
-  font-size: 18px;
+  font-size: 19px;
   cursor: pointer;
   display: grid;
   place-items: center;
-  color: var(--charcoal, #2B2B2B);
+  color: var(--tj-charcoal);
   transition: all 0.2s;
 }
 
 .config-close-btn:hover {
-  background: var(--charcoal, #2B2B2B);
-  color: #fff;
+  background: var(--tj-charcoal);
+  color: var(--tj-white);
 }
 
 .config-title {
   margin: 28px 0 8px;
-  font-family: var(--display, "Barlow Condensed", sans-serif);
+  font-family: var(--tj-display);
   font-size: clamp(34px, 4.5vw, 52px);
   font-weight: 500;
-  line-height: 0.85;
+  line-height: 0.82;
   letter-spacing: -0.04em;
   text-transform: uppercase;
+  color: var(--tj-charcoal);
 }
 
 .config-title em {
   font-style: italic;
-  color: var(--grey, #7A7A7A);
+  color: var(--tj-grey);
 }
 
 .config-desc {
-  color: var(--grey, #7A7A7A);
+  color: var(--tj-grey);
   font-size: 12px;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -1201,22 +1294,20 @@ dialog#configModal[open] {
   flex-direction: column;
   gap: 8px;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(43, 43, 43, 0.15);
+  background: var(--tj-white);
+  border: 1px solid var(--tj-line);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .config-tier-card:hover {
-  background: #fff;
-  border-color: rgba(43, 43, 43, 0.3);
+  border-color: rgba(43, 43, 43, 0.35);
 }
 
 .config-tier-card.is-selected {
-  background: #fff;
-  border-color: var(--purple, #A459FF);
-  box-shadow: 0 0 0 1.5px var(--purple, #A459FF);
+  border-color: var(--tj-purple);
+  box-shadow: 0 0 0 1.5px var(--tj-purple);
 }
 
 .config-tier-header {
@@ -1232,11 +1323,11 @@ dialog#configModal[open] {
   cursor: pointer;
   font-weight: 600;
   font-size: 13px;
-  color: var(--charcoal, #2B2B2B);
+  color: var(--tj-charcoal);
 }
 
 .config-tier-header input[type="radio"] {
-  accent-color: var(--purple, #A459FF);
+  accent-color: var(--tj-purple);
   cursor: pointer;
 }
 
@@ -1246,15 +1337,15 @@ dialog#configModal[open] {
   text-transform: uppercase;
   padding: 2px 7px;
   border-radius: 2px;
-  background: rgba(164, 89, 255, 0.12);
-  color: var(--purple, #A459FF);
+  background: var(--tj-purple-tint);
+  color: var(--tj-purple);
   font-weight: 600;
 }
 
 .config-tier-card p {
   margin: 0;
   font-size: 11px;
-  color: var(--grey, #7A7A7A);
+  color: var(--tj-grey);
   line-height: 1.5;
   padding-left: 24px;
 }
@@ -1284,44 +1375,44 @@ dialog#configModal[open] {
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--grey, #7A7A7A);
+  color: var(--tj-grey);
   font-weight: 600;
 }
 
 .config-field-row input,
 .config-field-row select {
   width: 100%;
-  border: 1px solid rgba(43, 43, 43, 0.2);
+  border: 1px solid var(--tj-line);
   border-radius: 3px;
   padding: 8px 10px;
-  background: #fff;
-  color: var(--charcoal, #2B2B2B);
+  background: var(--tj-white);
+  color: var(--tj-charcoal);
   font-size: 12px;
   outline: none;
 }
 
 .config-field-row input:focus,
 .config-field-row select:focus {
-  border-color: var(--purple, #A459FF);
-  box-shadow: 0 0 0 2px rgba(164, 89, 255, 0.18);
+  border-color: var(--tj-purple);
+  box-shadow: 0 0 0 2px var(--tj-purple-glow);
 }
 
 .config-actions-row {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  border-top: 1px solid var(--line, rgba(43, 43, 43, 0.2));
+  border-top: 1px solid var(--tj-line);
   padding-top: 18px;
 }
 
 .config-btn-save {
   min-height: 44px;
   border: 0;
-  border-radius: 4px;
-  padding: 0 20px;
-  background: var(--purple, #A459FF);
-  color: #fff;
-  font-size: 11px;
+  border-radius: 99px;
+  padding: 0 24px;
+  background: var(--tj-purple);
+  color: var(--tj-white);
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1335,12 +1426,12 @@ dialog#configModal[open] {
 
 .config-btn-reset {
   min-height: 44px;
-  border: 1px solid rgba(43, 43, 43, 0.2);
-  border-radius: 4px;
-  padding: 0 16px;
+  border: 1px solid var(--tj-line);
+  border-radius: 99px;
+  padding: 0 20px;
   background: transparent;
-  color: var(--charcoal, #2B2B2B);
-  font-size: 11px;
+  color: var(--tj-charcoal);
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1360,12 +1451,12 @@ dialog#configModal[open] {
     padding: 12px 16px;
   }
   .tj-mascot-wrapper {
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
   }
   .tj-mascot-svg {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
   }
   .tj-sentinel-name {
     font-size: 19px;
