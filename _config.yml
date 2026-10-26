@@ -1,0 +1,23 @@
+# GitHub Pages / Jekyll Configuration for THΛTJOINT
+# Reference: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
+
+title: "THΛTJOINT | Autonomous Property Operations"
+description: "The AI Operating System for Distributed Real Estate."
+url: "https://definehylabs.github.io"
+baseurl: "/thatJoint"
+
+# Disabling Jekyll themes:
+# THΛTJOINT features a bespoke architectural design system with custom CSS custom properties,
+# Barlow Condensed and DM Sans typography, a Three.js 3D spatial tour, and a Generative AI Sentinel companion.
+# Standard Jekyll themes (e.g. jekyll-theme-primer, minima, cayman) collide with these custom stylesheets
+# and are explicitly disabled in favor of direct static asset serving.
+theme: ""
+plugins: []
+
+# Exclude non-web build and validation assets from deployment
+exclude:
+  - .github/
+  - scripts/
+  - docs/
+  - "*.py"
+  - README.md

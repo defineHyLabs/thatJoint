@@ -57,10 +57,15 @@ def check_site(root):
     if errors:
         return errors
 
-    parser = LocalReferences()
-    parser.feed((root / "index.html").read_text(encoding="utf-8"))
+    html_files = sorted(root.glob("*.html"))
+    if not html_files:
+        return ["No HTML files found to validate."]
 
-    references = [(root, reference) for reference in parser.references]
+    references = []
+    for html_file in html_files:
+        parser = LocalReferences()
+        parser.feed(html_file.read_text(encoding="utf-8"))
+        references.extend((html_file.parent, ref) for ref in parser.references)
     for css_file in root.rglob("*.css"):
         css = css_file.read_text(encoding="utf-8")
         css_urls = re.findall(r"url\(\s*(['\"]?)(.*?)\1\s*\)", css)
